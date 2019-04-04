@@ -1,0 +1,17 @@
+Zadanie 1.
+Celem zadanie jest stworzenie przepływu, który
+-wczyta dane z folderu input
+-zrobi walidację plików XML używając schemy z folderu schema
+-pliki zgodne ze schemą trzeba umieścić w folderze output/matched
+-dla każdego niezgodnego pliku trzeba utworzyć komunikat w logu o poziome WARN
+z treścią "błąd walidacji pliku \nazwa-tego-pliku\"
+-pliki źródłowe powinne zostać w katalogu input
+-przy zmianie zawartości pliku, rezultat walidacji powienien się nadpisywać
+-system powinien wyzwalać się co 3 sekundy
+
+-po stworzeniu przepływu, trzeba przepływ zapisać jako szabłon i wyeksportować
+
+Oczekiwany czas wykonania 30-45 minut
+Powodzenia
+
+P. S. W razie jakikolwiek pytań - proszę pytać! :)

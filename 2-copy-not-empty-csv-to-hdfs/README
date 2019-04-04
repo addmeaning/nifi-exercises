@@ -1,0 +1,27 @@
+Zadanie 2
+uruchomić klaster hadoop:
+-odpalić klaster hadoop używająć skryptu start-hadoop.sh
+-wejść na localhost:8888/filebrowser/ (Hue)
+-login: cloudera / pass: cloudera
+-stworzyć folder output
+
+ściągnąć konfigurację:
+- wejść do folderu confs
+- użyć komendy 'docker cp hadoop:/etc/hadoop/conf.pseudo/core-site.xml .'
+- użyć komendy 'docker cp hadoop:/etc/hadoop/conf.pseudo/hdfs-site.xml .'
+- użyć komendy "docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' hadoop"
+- zamienić wszystkie quickstart-cloudera na wynik poprzeniej komendy
+- zamienić wszystkie 0.0.0.0 na wynik poprzedniej komendy (adres IP)
+- użyć tych konfiguracji przy zapisywaniu do HDFS
+
+stworzyć przepływ:
+- pobiera pliki z folderu input
+- jeśli plik jest nie pusty i jest rozszerzenia .csv, to zapisz go na HDFS
+- w przeciwnym wypadku stwórz komunikat z poziomem WARN
+- Do atrybutu "Hadoop Config Resources" użyj plików z folderu confs, podając ich po przecinku ze spacją
+
+- wejdź na localhost:8888/filebrowser
+- upewnij się że pliki csv powstały
+
+Powodzenia:
+przewidywany czas 1.5 h
