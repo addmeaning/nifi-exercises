@@ -1,17 +1,13 @@
-Zadanie 1.
-Celem zadanie jest stworzenie przepływu, który
--wczyta dane z folderu input
--zrobi walidację plików XML używając schemy z folderu schema
--pliki zgodne ze schemą trzeba umieścić w folderze output/matched
--dla każdego niezgodnego pliku trzeba utworzyć komunikat w logu o poziome WARN
-z treścią "błąd walidacji pliku \nazwa-tego-pliku\"
--pliki źródłowe powinne zostać w katalogu input
--przy zmianie zawartości pliku, rezultat walidacji powienien się nadpisywać
--system powinien wyzwalać się co 3 sekundy
+Exercise 1:
+Goal is to create flow that:
+-loads data from folder 'input'
+-validates XML files using schema in folder 'schema'
+-file compliant with schema should be placed in the output/matched folder
+-for each unmatched folder a message should be created "validation failed for a file named {insert-here-name-of-file}"
+-source files should remain in input directory
+-if file content is changed, validation result should be overwritten
+-system should trigger every 3 seconds
+-workflow should be exported as template
 
--po stworzeniu przepływu, trzeba przepływ zapisać jako szabłon i wyeksportować
-
-Oczekiwany czas wykonania 30-45 minut
-Powodzenia
-
-P. S. W razie jakikolwiek pytań - proszę pytać! :)
+Expected time: 30-45 minutes.
+Good Luck and don't hesitate to ask a questions

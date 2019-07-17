@@ -1,11 +1,10 @@
-Zadanie 3
+Exercise 3
 
-Stworzyć przepływ, który:
-- pobierze messages.zip z folderu input
-- rozpakuje archiwum
-- podzieli plik na określone wiadomości JSON
-- zapisze plik do HBASE'a.
+Create a flow, which:
+-get file messages.zip from "input" folder
+-unpack archive
+-split messages to JSON records
+-put JSON's to HBASE
 
-Oczekiwany czas wykonania 1.5 h.
-
-
+Expected time:
+1.5H
