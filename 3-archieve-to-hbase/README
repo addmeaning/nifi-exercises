@@ -4,7 +4,14 @@ Create a flow, which:
 -get file messages.zip from "input" folder
 -unpack archive
 -split messages to JSON records
--put JSON's to HBASE
+-put JSON's to ElasticSearch
+
+to run elasticSearch, run in terminal command
+==
+docker run -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node" docker.elastic.co/elasticsearch/elasticsearch:7.2.0
+==
+
+
 
 Expected time:
 1.5H
