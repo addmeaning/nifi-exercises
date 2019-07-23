@@ -1,0 +1,28 @@
+==
+A. Przygotować Verticę
+1. trzeba uruchomić instancję Vertica: uruchomić skrypt ./start-vertica.sh
+2. załogować się na ten kontener
+3. wykonać polecenie 
+	/opt/vertica/bin/vsql -h localhost docker dbadmin
+	pass: foo123
+4. utworzyć tabelę:
+	CREATE TABLE public.test(id INT, value VARCHAR);
+==
+
+B. Stworzyć przepływ, który:
+1. Wypełnia Verticę randomowymi danymi:
+	a. generujemy 100 plików FlowFile na sekundę
+	b. dodajemy każdemy pliku przepływu jako attrybut "key" (monotoniczne rosnący int) i  "value" (randomowo wygenerowana wartość (użyj funkcji random())
+	c. atrybuty konwertowane do JSON'a
+	d. JSON zapisywany do bazy Vertica
+
+
+C. Stworzyć przepływ, który:
+1. inkrementalnie pobiera rekordy z bazy danych Vertica w formacie Avro
+2. filtruje wyniki (zostają tylko rekordy z parzystymi kluczami)
+3. aggreguje kontent paczkami po 1000 rekordów
+4. wynik agregacji zapisać w HDFS
+
+
+
+
