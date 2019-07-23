@@ -1,0 +1,22 @@
+Cel:
+Nauczyć się łączyć ze sobą kilka instancji Apache NiFi
+
+1. Stworzyć 2 instancje Apache NiFi, wpisując w terminał
+	a. docker network create example
+	b. docker run --net example --name nifi1 -d -p 8070:8080 apache/nifi:1.8.0
+        c. docker run --net example --name nifi2 -d -p 8060:8080 apache/nifi:1.8.0
+2. Sprawdzić w przegłądarce że udało się utworzyć 2 instancje NiFi:
+	a. localhost:8070/nifi
+	b. localhost:8060/nifi
+3. Sprawdzić adresy IP poszczególnych NiFi
+	docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' nifi1
+	docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' nifi2
+
+	W moim przypadku: 172.18.0.3 i .2
+4. Stworzyć w Pierwszej instacji NiFi przepływ, generujący FlowFile i wysyłający na port wyjściowy, który jest umieszczony w korzeniu zeszytu (top-level, NiFi Flow process group)
+5. W drugiej instancji dodać komponent "Remote process group". 
+	a. Jako adress użyć http addresu nifi z IP, który uzyskaliśmy wpisując komendę 'docker inspect ...' n. p. http://172.18.0.2/nifi
+	b. z remote process group stworzyć połączenie do dowolnego processora akceptującego połączenia, n. p. do LogMessage
+	c. upewnić się że komunikaty przechodzą
+
+
