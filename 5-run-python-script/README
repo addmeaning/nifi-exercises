@@ -1,0 +1,31 @@
+Stworzyć przepływ który
+
+składa się z dwóch grup processów, komunikujących się przez port:
+
+pierwsza:
+1. uruchomi w terminal'u polecenie: 'python script.sh' (pamiętaj o użycie odpowiedniej ścieżki - absolute path)
+	Podpowiedź (processor się nazywa ExecuteProcess)
+2. pobierze wyniki wykonania programu
+3. rozbije output, każda linijka musi być osobno
+4. każda linijka będzie przekształcona w scieżke do skryptu .sh
+ 
+przykład: 
+	1 -> /home/anton/tools/nifi-excercises/5-run-python-script/scripts/1.sh
+	2 -> /home/anton/tools/nifi-excercises/5-run-python-script/scripts/2.sh
+
+5. wynik będzie przekazany na port wyjściowy
+
+Druga grupa procesów:
+1. Po otrzymaniu z portu wejściowego każdy z tych skryptów zostanie uruchomiony (ExecuteStreamCommand)
+2. Po analizie atrybutów w Data Provenance Repository zostanie zaimplementowany mechanizm który rozdzieli
+skrypty wykonane z błędem i te, którę wykonane poprawnie
+3. Poprawne skrypty zostaną zapisane na serwer FTP.
+
+Żeby uruchomić serwer FTP, trzeba użyć komendy:
+==
+sudo docker run -p 21:21 -p 30000-30009:30000-30009 -e FTP_USER_NAME=test -e FTP_USER_PASS=12345 -e FTP_USER_HOME=/home/test stilliard/pure-ftpd
+==
+przepływ powinien być zapisany w systemie nifi-repository
+
+Oczekiwany czas wykonania 1.0-1.5 h.
+

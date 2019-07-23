@@ -1,0 +1,48 @@
+1. uruchomić w terminalu skrypt ./start-mssql-server.sh
+2. załogować się na ten kontener używając komendy
+	sudo docker exec -it sql1 "bash"
+3. po załogowaniu wpisać komendę	
+	/opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P Docker123!
+
+4. wykonać następujące polecenia:
+=
+CREATE DATABASE test
+GO
+
+USE test
+CREATE TABLE dbo.config(id INT IDENTITY(1, 1) NOT NULL, value VARCHAR(50))
+GO
+
+CREATE TABLE dbo.output(id INT, value VARCHAR(50))
+GO
+=
+5. ściągnąc sterownik jdbc od bazy danych mssql server i umieścić go folderze 
+~/tools/jdbc_drivers
+
+link do ściągania: https://www.microsoft.com/en-us/download/details.aspx?id=57782 
+(interesuje nas .tar.gz paczka, którą można rozpakować i skopiować plik mssql-jdbc-7.2.2.jre8.jar do dowolnego folder'u)
+
+
+Stworzyć przepływ:
+1. składa się z dwóch grup processorów
+2. komunikacja między nimi się odbywa przez port'y (input/output)
+3. pierwsza grupa odpowiada za pobranie konfiguracji
+	a. monitoruje stan tabeli w bazie danych (QueryDataBaseTableRecord)
+		a.1 jako maximum colum jest używana columna id
+		a.2 przy konfiguracji controllera użyć następujących informacji:
+			connection URL: jdbc:sqlserver://localhost:1433;databaseName=test
+			Driver Class Name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+			Login: sa
+			Pass: Docker123!
+	b. przy otrzymaniu danych konwertuje wiersz na json
+	c. z JSON'a pobieramy nazwę pliku, który chcemy wczytać
+	d. przekazujemy ścieżke do pliku do wyjściowego portu
+
+4. druga grupa odpowiada za wczytanie pliku docelowego i zapisywanie informacji z niego do bazy mssql:
+	a. pobiera plik używając ścieżki z portu wejściowego
+	b. wybiera odpowiednie pola z JSON'a
+	c. konwertuje JSON w polecenie INSERT do bazy danych (ConvertJsonToSQL)
+	d. wysyła INSERT do bazy danych
+5. proces musi być zapisany do NiFi flow registry
+
+Oczekiwany czas wykonania 2h
