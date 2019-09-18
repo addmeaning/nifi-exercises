@@ -1,0 +1,14 @@
+Zadanie 4:
+
+Stworzyć web-server (ListenHTTP)
+który jako body w POST przyjmuje json, zawierający 3 parametry:
+a) group_id
+b) topic_name
+c) offset
+
+1. Niepoprawne JSON'y powinny być odrzucane
+2. Poprawne przekazywany do processora ExecuteStreamCommand w celu zarządzania offsetem konsumera.
+używając konsolowej aplikacji kafka-consumer-groups (jest częscią dystrybucji kafka)
+
+Czas wykonania 1h
+

@@ -1,0 +1,31 @@
+Zadanie-3 zapisać do Hive.
+1. Wygenerować losowego JSONa z polami (key, value, part)
+2. Otrzymanego JSONa przetworzyć w Avro używając schemu niżej
+3. Zapisać w transakcyjnej ORC tabeli z partycjonowaniem po kolumnie part i clastrowaniu po key w Hive
+
+Niezbędne konfiguracje są w folderze conf
+
+
+
+
+Avro schemat:
+
+{
+  "type": "record",
+  "name": "test",
+  "namespace": "nifi",
+  "fields": [
+    {
+      "name": "key",
+      "type": "string"
+    },
+    {
+      "name": "part",
+      "type": "string"
+    },
+    {
+      "name": "value",
+      "type": "string"
+    }
+  ]
+}

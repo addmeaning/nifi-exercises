@@ -1,0 +1,15 @@
+Zadanie 2:
+
+1) Używając wyniku z poprzedniego zadania, skonstruować przepływ, który:
+2) Skopiuje wiadomości z topic'u pageviews do innego topic'u (tu przecwiczymy konwersje json-avro)
+Wskazówki:
+
+1) Trzeba stworzyć nowy topic w kafka i nadać mu ten sam value schemat
+2) Trzeba użyć Processora PublishKafkaRecord_2_0
+3) Record Reader: JsonTreeReader (ponieważ nas interesuje cały komunikat), schemat musi być pobrany z Confluence Schema Registry
+4) Record Writer musi być zintegrowany z Confluence Schema registry
+5) Sprawdzić czy wiadomości zostały zapisane
+6) Zasymulować test obciążeniowy dla publikacji wiadomości na Kafka: wygenerować 5000 wiadomości na sekundę i sprawdzić czy producer nadąża.
+
+Oczekiwany czas wykonania 25-30
+
