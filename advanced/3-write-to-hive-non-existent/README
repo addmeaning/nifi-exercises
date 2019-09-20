@@ -29,3 +29,12 @@ Avro schemat:
     }
   ]
 }
+
+
+==
+CREATE TABLE nifi_orc_2 (key string, value string)
+partitioned by (part string)
+clustered by(key)
+INTO 3 buckets STORED AS ORC TBLPROPERTIES ('transactional'='true');
+
+Hive metastore URI: thrift://<adres_kontenera>:9043
