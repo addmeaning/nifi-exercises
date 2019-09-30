@@ -1,0 +1,21 @@
+Zadanie 1:
+celem zadania jest wczytanie wiadomości w formacie AVRO:
+
+używająć https://docs.confluent.io/current/quickstart/cos-quickstart.html
+wykonać kroki 1-3.
+
+Zaimplementować flow, który:
+1) będzie uruchomiany tak szybko, jak tylko się da
+2) Będzie konsumować wiadomości z Kafka
+	a) broker - localhost:9092
+	b) topic - pageviews
+	c) groupid - nifi
+	d) Recod Reader - AvroReader. Użyć zakodowanej referencji na schemat Confluent
+	Stworzyć Conroller Service ConfluentSchemaRegistry, który wskazuje na lokalny Schema registry
+        e) Record Writer - dowolny
+3) Proces umieścić w oddzielnej proces grupie z portem wyjściowym
+
+W wyniku tego 
+otzymujemy JSON w formacie {"viewtime":786691,"userid":"User_6","pageid":"Page_97"}
+
+czas: 45 minut
