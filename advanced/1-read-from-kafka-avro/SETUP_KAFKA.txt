@@ -1,0 +1,22 @@
+Uruchomić Zookeepera:
+
+${KAFKA_HOME}/bin/zookeeper-server-start.sh config/zookeeper.properties &
+
+
+Uruchomić Kafkę:
+
+${KAFKA_HOME}/bin/kafka-server-start.sh config/server.properties &
+
+W tym momencie Kafka działa!
+
+Teraz musimy stworzyć topic:
+bin/kafka-topics.sh --create --bootstrap-server localhost:9092 --replication-factor 1 --partitions 1 --topic test
+
+Sprawdzić czy stworzyliśmy topic:
+bin/kafka-topics.sh --list --bootstrap-server localhost:9092
+
+
+
+Wysłać przykładową wiadomość (można też przez NiFi):
+
+bin/kafka-console-producer.sh --broker-list localhost:9092 --topic test
