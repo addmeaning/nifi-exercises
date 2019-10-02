@@ -1,11 +1,17 @@
-Zadanie 3
+Exercise 3
 
-Stworzyć przepływ, który:
-- pobierze messages.zip z folderu input
-- rozpakuje archiwum
-- podzieli plik na określone wiadomości JSON
-- zapisze plik do HBASE'a.
+Create a flow, which:
+-get file messages.zip from "input" folder
+-unpack archive
+-split messages to JSON records
+-put JSON's to ElasticSearch
 
-Oczekiwany czas wykonania 1.5 h.
+to run elasticSearch, run in terminal command
+==
+docker run -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node" docker.elastic.co/elasticsearch/elasticsearch:7.2.0
+==
 
 
+
+Expected time:
+1.5H
