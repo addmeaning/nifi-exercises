@@ -37,4 +37,11 @@ partitioned by (part string)
 clustered by(key)
 INTO 3 buckets STORED AS ORC TBLPROPERTIES ('transactional'='true');
 
-Hive metastore URI: thrift://<adres_kontenera>:9043
+Hive metastore URI: thrift://<adres_kontenera>:9083
+
+Przy błędach z połączeniem do hive:
+trzeba się upewnić że adres kontenera (wynik komendy poniżej) jest zgodny z konfiguracją (core-site.xml, hive-site.xml):
+
+docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' hadoop
+
+
