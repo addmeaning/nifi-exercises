@@ -1,0 +1,53 @@
+Motivation: we want to create flow which will be triggered by some external event,
+in our case it will be database insert. It will read data from DataBase extract information from result (filename) and send that information
+to another process group which will dynamically read that file and make insert to DB.
+
+1. run in terminal script ./start-mssql-server.sh
+2. login to started docker container by using terminal command
+	sudo docker exec -it sql2 "bash"
+3. after login on container issue a command:	
+	/opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P Docker123!
+
+4. in SQL server command line issue following commands (just copy & paste):
+=
+CREATE DATABASE test
+GO
+
+USE test
+CREATE TABLE dbo.config(id INT IDENTITY(1, 1) NOT NULL, value VARCHAR(50))
+GO
+
+CREATE TABLE dbo.output(id INT, value VARCHAR(50))
+GO
+=
+5. Download MsSql JDBC driver and place it under folder:
+Link for downloading MsSQL driver: https://www.microsoft.com/en-us/download/details.aspx?id=57782 
+(we are interested in .tar.gz archive, unpack that archieve and copy file 
+"mssql-jdbc-7.2.2.jre8.jar"
+to ~/tools/jdbc_drivers  (or any convenient folder to you))
+
+
+Create a Flow:
+1. Which has two process groups
+2. Process groups communicating via input/output ports.
+3. First process group responsible for getting configuration: 
+	a. Monitors state of the database table and gets new results (QueryDataBaseTableRecord)
+		Configuration of QueryDataBaseTableRecord:
+		a.1 in "maximum column" write: id
+		a.2 configure service with following parameters:
+			connection URL: jdbc:sqlserver://localhost:1433;databaseName=test
+			Driver Class Name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+			Login: sa
+			Pass: Docker123!
+	b. Converts record to JSON (you can use JsonSetWriter, default are fine in this case)
+	c. From JSON get filename that we want to read. 
+	d. Convert filename to absolute path and send to another process group 
+
+4. Second process group will read target file and write information from that file to our MsSQL server database:
+	a. Read a File using path from input port (use stateful processor FetchFile)
+	b. Using EvaluateJsonPath select only those fields that are present in Database (id, value):
+	c. Convert JSON to INSERT to Database (using processor ConvertJsonToSQL)
+	d. Sends INSERT to Database table (using processor PutSQL)
+5. Flow should be written to NiFi registry
+
+Expected time: 2h
