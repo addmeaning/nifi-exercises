@@ -12,12 +12,6 @@ Create a DataFlow:
 -go to localhost:8888/filebrowser
 -make sure files was really copied
 
-Zadanie 2
-uruchomić klaster hadoop:
--odpalić klaster hadoop używająć skryptu start-hadoop.sh
--wejść na localhost:8888/filebrowser/ (Hue)
--login: cloudera / pass: cloudera
--stworzyć folder output
 
 Expected time:
 1.5 H
