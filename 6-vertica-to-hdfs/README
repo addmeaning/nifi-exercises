@@ -1,0 +1,24 @@
+==
+A. Prepare Vertica
+1. you need to run the Vertica instance: run the script ./start-vertica.sh
+2. log on to this container
+3. execute the command 
+	/opt/vertica/bin/vsql -h localhost docker dbadmin
+	Pass: foo123
+4. create a table:
+	CREATE TABLE public.test(id INT, value VARCHAR);
+==
+
+B. Create a flow, which:
+1. Fill Vertica with random data:
+	a. We generate 100 FlowFile files per second
+	b. add each workflow file as a "key" attribute (monotonous increasing integer) and "value" (randomly generated value) (use random() function)
+	c. Attributes converted to JSON
+	d. JSON stored in the Vertica database
+
+
+C. Create a flow, which:
+1. incrementally retrieves records from the Vertica database in Avro format
+2. filters the results (only records with even keys remain)
+3. aggregates content to packages of 1000 records each
+4. write the result of the aggregation in the HDFS
