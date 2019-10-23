@@ -1,0 +1,18 @@
+{
+   "garage":{
+      "first-car":{
+         "type":"jeep"
+      },
+      "second-car":{
+         "type":"cabriolet"
+      }
+   },
+   "devices":{
+      "computer":{
+         "brand":"Lenovo"
+      },
+      "phone":{
+         "brand":"Samsung"
+      }
+   }
+}
