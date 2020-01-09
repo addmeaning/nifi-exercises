@@ -1,23 +1,32 @@
+### Eng
 Exercise 2
 Start Hadoop cluster:
--run hadoop docker cluster by running st-ex.sh
--go in browser to "localhost:8888/filebrowser"
--login: cloudera / password: cloudera
+- run hadoop docker cluster by running st-ex.sh
+- go in browser to "localhost:8888/filebrowser"
+- login: cloudera / password: cloudera
 - create folder "output"
 
 Create a DataFlow:
--if file is not empty and has ".csv" extension, write it on HDFS
--otherwise create message WARN in a log
--for "Hadoop Configuration Resources" attribute use files that are located in folder confs
--go to localhost:8888/filebrowser
--make sure files was really copied
+- if file is not empty and has ".csv" extension, write it on HDFS
+- otherwise create message WARN in a log
+- during configuration of Hadoop processor for "Hadoop Configuration Resources" attribute use files that are located in folder ./confs/
+- go to localhost:8888/filebrowser
+- make sure files was really copied
 
+### PL 
 Zadanie 2
 uruchomić klaster hadoop:
--odpalić klaster hadoop używająć skryptu start-hadoop.sh
--wejść na localhost:8888/filebrowser/ (Hue)
--login: cloudera / pass: cloudera
--stworzyć folder output
+- odpalić klaster hadoop używająć skryptu start-ex.sh
+- wejść na localhost:8888/filebrowser/ (Hue)
+- login: cloudera / pass: cloudera
+- stworzyć folder output
+
+Stworzyć przepływ:
+- Jeśli plik jest nie pusty i ma rozszerzenie ".csv" zapisz go na HDFS
+- w przeciwnym wypadku stwórz wpis w log'u z poziomem WARN
+- Przy konfiguracji Hadoop processora we właściwośći "Hadoop Configuration Resources" użyj plików które się znajdują w folderze ./confs/
+- wejdź na localhost:8888/filebrowser/ i upewnij się że pliki rzeczyście skopiowane
+
 
 Expected time:
 1.5 H
