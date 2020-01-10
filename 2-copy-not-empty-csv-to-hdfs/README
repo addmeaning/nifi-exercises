@@ -16,7 +16,7 @@ Create a DataFlow:
 ### PL 
 Zadanie 2
 uruchomić klaster hadoop:
-- odpalić klaster hadoop używająć skryptu start-ex.sh
+- odpalić klaster hadoop używająć skryptu st-ex.sh
 - wejść na localhost:8888/filebrowser/ (Hue)
 - login: cloudera / pass: cloudera
 - stworzyć folder output
