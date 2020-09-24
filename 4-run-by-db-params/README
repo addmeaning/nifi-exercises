@@ -1,6 +1,6 @@
 1. uruchomić w terminalu skrypt ./start-mssql-server.sh
 2. załogować się na ten kontener używając komendy
-	sudo docker exec -it sql1 "bash"
+	sudo docker exec -it sql2 "bash"
 3. po załogowaniu wpisać komendę	
 	/opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P Docker123!
 
